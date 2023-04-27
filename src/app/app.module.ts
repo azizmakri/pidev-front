@@ -24,6 +24,8 @@ import { AddproductComponent } from './backOffice/shopAdmin/addproduct/addproduc
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddPostFrontComponent } from './frontOffice/forum/add-post-front/add-post-front.component';
 import { ListForumFrontComponent } from './frontOffice/forum/list-forum-front/list-forum-front.component';
+import { PostDetailsComponent } from './frontOffice/forum/post-details/post-details.component';
+import { UpdatePostComponent } from './frontOffice/forum/update-post/update-post.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ListForumFrontComponent } from './frontOffice/forum/list-forum-front/li
     ProductsComponent,
     AddproductComponent,
     AddPostFrontComponent,
-    ListForumFrontComponent
+    ListForumFrontComponent,
+    PostDetailsComponent,
+    UpdatePostComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ForumService } from 'src/app/Service/forum/forum.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ForumService } from 'src/app/Service/forum/forum.service';
 })
 export class ListForumFrontComponent {
   posts!:any[];
-  constructor(private service:ForumService){}
+  constructor(private service:ForumService,private router: Router){}
 
   ngOnInit(): void {
     this.service.getPosts().subscribe(res => {
@@ -26,5 +27,7 @@ deletePost(post: any): void {
     });
   }
 }
-
+goToPostDetails(postId: number): void {
+  this.router.navigate(['/front/post-details', postId]);
+}
 }

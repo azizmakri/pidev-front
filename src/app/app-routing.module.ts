@@ -12,6 +12,7 @@ import { ProductsComponent } from './frontOffice/shop/products/products.componen
 import { AddproductComponent } from './backOffice/shopAdmin/addproduct/addproduct.component';
 import { ListForumFrontComponent } from './frontOffice/forum/list-forum-front/list-forum-front.component';
 import { AddPostFrontComponent } from './frontOffice/forum/add-post-front/add-post-front.component';
+import { PostDetailsComponent } from './frontOffice/forum/post-details/post-details.component';
 
 const routes: Routes = [{
 
@@ -78,7 +79,11 @@ const routes: Routes = [{
     {
       path:'addpost',
       component:AddPostFrontComponent
-    }
+    },
+    { 
+      path: 'post-details/:id',
+     component: PostDetailsComponent
+    },
 
     
   ]
