@@ -1,0 +1,28 @@
+<section class="card-list">
+  <div class="col-lg-7 mx-auto">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10" *ngFor="let post of posts">
+          <div class="card mb-3" style="max-width: 1000px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img class="card-img-top" [src]="getImage(post)" alt="{{post.topicPost}}">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ post.topicPost }}</h5>
+                  <p class="card-text">{{ post.descriptionPost }}</p>
+                  <button class="btn btn-primary mr-3">Read More</button>
+                  <button class="btn btn-danger ml-3" (click)="deletePost(post)">
+                    <span class="fas fa-trash-alt"></span>
+                  </button>
+                  <p class="card-text"><small class="text-muted">Posted on {{ post.dateCreationPost }}</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

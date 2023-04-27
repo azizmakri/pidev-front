@@ -1,0 +1,94 @@
+<!---
+<form #fr="ngForm" (ngSubmit)="Submit(fr)">
+    <div class="mb-3">
+      <label for="descriptionProduct" class="form-label">descriptionProduct</label>
+      <input type="text" name="descriptionProduct" class="form-control" [(ngModel)]="descriptionProduct" id="descriptionProduct">
+    </div>
+    <div class="mb-3">
+      <label for="priceProduct" class="form-label">priceProduct</label>
+      <input type="text" name="priceProduct" class="form-control" [(ngModel)]="priceProduct" id="priceProduct">
+    </div>
+    <div class="mb-3">
+      <label for="quantityProduct" class="form-label">quantityProduct</label>
+      <input type="text" name="quantityProduct" class="form-control" [(ngModel)]="quantityProduct" id="quantityProduct">
+    </div>
+    <div class="mb-3">
+      <label for="nameProduct" class="form-label">nameProduct</label>
+      <input type="text" name="nameProduct" class="form-control" [(ngModel)]="nameProduct" id="nameProduct">
+    </div>
+    <div class="mb-3">
+      <label for="referenceProduct" class="form-label">referenceProduct</label>
+      <input type="text" name="referenceProduct" class="form-control" [(ngModel)]="referenceProduct" id="referenceProduct">
+    </div>
+
+    <div class="mb-3">
+      <label for="marqueProduct" class="form-label">marqueProduct</label>
+      <input type="text" name="marqueProduct" class="form-control" [(ngModel)]="marqueProduct" id="marqueProduct">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>  -->
+
+<!-- addproduct.component.html -->
+<h1>Ajouter un produit</h1>
+
+<form [formGroup]="ngForm" (ngSubmit)="onsubmit()">
+  <div>
+    <label>Nom du produit:</label>
+    <input type="text" formControlName="nameProduct" />
+  </div>
+
+  <div>
+    <label>Référence du produit:</label>
+    <input type="text" formControlName="referenceProduct" />
+  </div>
+
+  <div>
+    <label>Catégorie:</label>
+    <select formControlName="idCategory">
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+    </select>
+  </div>
+  
+  <div>
+    <label>Sous-catégorie:</label>
+    <select formControlName="idSousCategory">
+      <option *ngFor="let sousCategory of sousCategories" [value]="sousCategory.id">{{ sousCategory.name }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Description:</label>
+    <textarea formControlName="descriptionProduct"></textarea>
+  </div>
+
+  <div>
+    <label>Prix:</label>
+    <input type="number" formControlName="priceProduct" />
+  </div>
+
+  <div>
+    <label>Quantité:</label>
+    <input type="number" formControlName="quantityProduct" />
+  </div>
+
+  <div>
+    <label>Marque:</label>
+    <input type="text" formControlName="marqueProduct" />
+  </div>
+
+  <div>
+    <label>Remise:</label>
+    <input type="number" formControlName="discountProduct" />
+  </div>
+
+  <div>
+    <label>Image:</label>
+    <input type="file" (change)="onFileSelected($event)" />
+  </div>
+
+  <button type="submit">Ajouter</button>
+</form>
+
+
+
