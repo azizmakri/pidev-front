@@ -1,0 +1,27 @@
+.custom-file-input::-webkit-file-upload-button {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .custom-file-input::-webkit-file-upload-button:hover {
+    background: #34495e;
+  }
+  
+  .custom-file-label {
+    color: #95a5a6;
+    border-radius: 5px;
+  }
+  
+  .custom-file-input:focus ~ .custom-file-label {
+    border-color: #95a5a6;
+  }
+  
+  .custom-file-input:active ~ .custom-file-label {
+    background-color: #bdc3c7;
+    color: #fff;
+  }
+  

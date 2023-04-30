@@ -12,10 +12,16 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ post.topicPost }}</h5>
                   <p class="card-text">{{ post.descriptionPost }}</p>
-                  <button class="btn btn-primary mr-3">Read More</button>
-                  <button class="btn btn-danger ml-3" (click)="deletePost(post)">
-                    <span class="fas fa-trash-alt"></span>
-                  </button>
+                  <a  [routerLink]="['/front/detailpost', post.idPost]" class="btn btn-primary mr-3">Read More</a>
+                  <p></p>
+                  <div class="form-group">
+                    <label></label>
+                      <button class="btn btn-primary" routerLink="/front/edit/{{post.idPost}}" style="background:#34495e;margin-right: 10px;">Modifier</button>
+                      <button class="btn btn-danger ml-3" (click)="deletePost(post)">
+                        <span class="fas fa-trash-alt"></span>
+                      </button>
+                    </div>
+                  
                   <p class="card-text"><small class="text-muted">Posted on {{ post.dateCreationPost }}</small></p>
                 </div>
               </div>

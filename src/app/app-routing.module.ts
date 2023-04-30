@@ -13,6 +13,7 @@ import { AddproductComponent } from './backOffice/shopAdmin/addproduct/addproduc
 import { ListForumFrontComponent } from './frontOffice/forum/list-forum-front/list-forum-front.component';
 import { AddPostFrontComponent } from './frontOffice/forum/add-post-front/add-post-front.component';
 import { PostDetailsComponent } from './frontOffice/forum/post-details/post-details.component';
+import { UpdatePostComponent } from './frontOffice/forum/update-post/update-post.component';
 
 const routes: Routes = [{
 
@@ -80,10 +81,14 @@ const routes: Routes = [{
       path:'addpost',
       component:AddPostFrontComponent
     },
-    { 
-      path: 'post-details/:id',
-     component: PostDetailsComponent
+    {
+      path:'detailpost/:id',
+      component: PostDetailsComponent
     },
+    {
+      path:'edit/:id',
+      component: UpdatePostComponent
+    }
 
     
   ]

@@ -1,1 +1,26 @@
-<p>update-post works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Update Agency Offer</h2>
+          <form (ngSubmit)="updatePost()">
+            <div class="form-group">
+              <label for="idpost">id post</label>
+              <input type="number" class="form-control" id="idpost" [(ngModel)]="post.idPost" name="idpost">
+            </div>
+            <div class="form-group">
+              <label for="topicPost">Topic</label>
+              <input type="text" class="form-control" id="topicPost" [(ngModel)]="post.topicPost" name="topicPost">
+            </div>
+            <div class="form-group">
+              <label for="descriptionPost">Description</label>
+              <input type="text" class="form-control" id="descriptionPost" [(ngModel)]="post.descriptionPost" name="descriptionPost">
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

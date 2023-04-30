@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Post } from 'src/app/Model/Post';
 import { ForumService } from 'src/app/Service/forum/forum.service';
 
 @Component({
@@ -18,6 +19,10 @@ export class ListForumFrontComponent {
 }
 getImage(pst: any): string {
   return 'data:image/jpeg;base64,' + pst.imagePost; // Replace "jpeg" with the actual image format
+}
+
+editPost(post: Post) {
+  this.router.navigate(['/front/edit', post.idPost]);
 }
 deletePost(post: any): void {
   if (confirm('Are you sure you want to delete this post?')) {

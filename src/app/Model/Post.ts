@@ -1,3 +1,5 @@
+import { CommentPost } from "./CommentPost";
+
 export class Post {
     idPost!: number;
     topicPost!: string;
@@ -6,5 +8,6 @@ export class Post {
     dateCreationPost!: Date;
     idUser!: string;
     idCategory!: number;
-  
+    commentList?: CommentPost[]; // optional because it is a one-to-many relationship
   }
+  

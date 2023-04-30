@@ -1,1 +1,48 @@
-<p>post-details works!</p>
+<section class="content-body">
+  <div class="container mx-auto">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">{{ post?.topicPost }}</h3>
+          </div>
+          <div class="card-body">
+            <ul>
+              <img [src]="getImage(post)" class="rounded float-left post-image" alt="post?.topicPost">
+              <li><b> Description:</b> {{ post?.descriptionPost }}</li>
+              <li><b> Creation Date:</b> {{ post?.dateCreationPost }}</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Comments Section -->
+        <div class="comments-section">
+          <h3>Comments</h3>
+          <ul class="list-unstyled">
+            <li class="media my-4" *ngFor="let comment of post?.commentList">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">{{ comment?.userComment?.lastName }}</h5>
+                <p>{{ comment?.descriptionComment}}</p>
+                <p class="text-muted">Posted on {{ comment?.dateCreationComment }}</p>
+                <div class="like-dislike-section">
+                  <button class="btn btn-outline-primary mr-2" >
+                    Like <span style="color: dimgray;">{{ comment?.nbLiked }}</span>
+                  </button>
+                  <button class="btn btn-outline-danger" >
+                    Dislike <span style="color: dimgray;">{{ comment?.nbDisliked }}</span>
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <form class="comment-form">
+            <div class="form-group">
+              <textarea class="form-control" placeholder="Write your comment here"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Post Comment</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
