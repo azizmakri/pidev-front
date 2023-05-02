@@ -7,6 +7,6 @@ export class CommentPost {
     descriptionComment!: string;
     nbLiked!: number;
     nbDisliked!: number;
-    post?: Post;
+    post!: Post;
     userComment!: User;
   }

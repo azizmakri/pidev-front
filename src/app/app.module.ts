@@ -26,6 +26,7 @@ import { AddPostFrontComponent } from './frontOffice/forum/add-post-front/add-po
 import { ListForumFrontComponent } from './frontOffice/forum/list-forum-front/list-forum-front.component';
 import { PostDetailsComponent } from './frontOffice/forum/post-details/post-details.component';
 import { UpdatePostComponent } from './frontOffice/forum/update-post/update-post.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -52,12 +53,13 @@ import { UpdatePostComponent } from './frontOffice/forum/update-post/update-post
     UpdatePostComponent
   ],
   imports: [
+    NgxPaginationModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule 
-  ],
+    ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

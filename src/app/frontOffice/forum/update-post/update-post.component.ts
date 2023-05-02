@@ -27,7 +27,7 @@ export class UpdatePostComponent {
     const idUser="a900a796-5fdf-4416-8f25-ac3ea01f9514";
     this.forumService.updatePost(this.post,idUser)
       .subscribe(
-        () => console.log('post offer updated successfully'),
+        () => console.log('post updated successfully'),
         error => console.log(error)
       );
       this.router.navigate(['/front/listforum']);
