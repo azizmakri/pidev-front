@@ -16,8 +16,8 @@
                   <p></p>
                   <div class="form-group">
                     <label></label>
-                      <button class="btn btn-primary" routerLink="/front/edit/{{post.idPost}}" style="background:#34495e;margin-right: 10px;">Modifier</button>
-                      <button class="btn btn-danger ml-3" (click)="deletePost(post)">
+                      <button *ngIf="post.userPost.idUser === userId " class="btn btn-primary" routerLink="/front/edit/{{post.idPost}}" style="background:#34495e;margin-right: 10px;">Modifier</button>
+                      <button *ngIf="post.userPost.idUser === userId " class="btn btn-danger ml-3" (click)="deletePost(post)">
                         <span class="fas fa-trash-alt"></span>
                       </button>
                     </div>

@@ -9,41 +9,74 @@
           <div class="card-body">
             <ul>
               <img [src]="getImage(post)" class="rounded float-left post-image" alt="post?.topicPost">
-              <li><b> Description:</b> {{ post.descriptionPost }}</li>
-              <li><b> Creation Date:</b> {{ post.dateCreationPost }}</li>
+              <li style="margin-top: 20px;"> <h5>{{ post.descriptionPost }}</h5></li>
+              <li><b> Created at :</b> {{ post.dateCreationPost }}</li>
             </ul>
           </div>
         </div>
-  
         <!-- Comments Section -->
-<div class="comments-section">
-  <h3>Comments</h3>
-  <ul class="list-unstyled">
-    <li class="media my-4" *ngFor="let commenta of post?.commentList">
-      <button *ngIf="commenta.userComment.idUser === userId " class="btn btn-danger btn-sm delete-button" (click)="deleteComment(commenta)">X</button>
-      <div class="media-body">
-        <h5 class="mt-0 mb-1">{{ commenta?.userComment?.lastName }}</h5>
-        <p>{{ commenta?.descriptionComment}}</p>
-        <p class="text-muted">Posted on {{ commenta?.dateCreationComment }}</p>
-        <div class="like-dislike-section">
-          <button class="btn btn-outline-primary mr-2" (click)="onLikeClick(commenta)">
-            Like <span style="color: dimgray;">{{ commenta?.nbLiked }}</span>
-          </button>
-          <button class="btn btn-outline-danger" (click)="onDislikeClick(commenta)">
-            Dislike <span style="color: dimgray;">{{ commenta?.nbDisliked }}</span>
-          </button>
+        <div *ngIf="!post.isSorted">
+          <div class="comments-section">
+            <h3>Comments<button type="button" class="btn btn-outline-secondary" style="margin-left: 20px;" (click)="post.isSorted = true">Filter</button></h3>
+            <ul class="list-unstyled">
+              <li class="media my-4" *ngFor="let commenta of post?.commentList">
+                <button *ngIf="commenta.userComment.idUser === userId " class="btn btn-danger btn-sm delete-button" (click)="deleteComment(commenta)">X</button>
+                <button *ngIf="(commenta.userComment.idUser === userId) && !commenta.isEditing" class="btn btn-dark  edit-button" (click)="commenta.isEditing = true">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <div class="media-body" *ngIf="!commenta.isEditing">
+                  <h5 class="mt-0 mb-1">{{ commenta?.userComment?.lastName }}</h5>
+                  <p>{{ commenta?.descriptionComment}}</p>
+                  <p class="text-muted">Posted on {{ commenta?.dateCreationComment }}</p>
+                  <div class="like-dislike-section">
+                    <button class="btn btn-outline-primary mr-2" (click)="onLikeClick(commenta)">
+                      Like <span style="color: dimgray;">{{ commenta?.nbLiked }}</span>
+                    </button>
+                    <button class="btn btn-outline-danger" (click)="onDislikeClick(commenta)">
+                      Dislike <span style="color: dimgray;">{{ commenta?.nbDisliked }}</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="media-body" *ngIf="commenta.isEditing">
+                  <form (ngSubmit)="updateComment(commenta.idComment)">
+                    <h5 class="mt-0 mb-1">{{ commenta?.userComment?.lastName }}</h5>
+                    <div class="form-group">
+                      <input class="form-control" id="descriptionComment" [(ngModel)]="commenta.descriptionComment" name="descriptionComment" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" (click)="commenta.isEditing = false">Save</button>
+                    <button type="button" class="btn btn-secondary ml-2" (click)="commenta.isEditing = false">Cancel</button>
+                  </form>
+                </div>
+              </li>
+            </ul>
+            <form class="comment-form" (ngSubmit)="addComment()">
+              <div class="form-group">
+                <input class="form-control" id="descriptionComment" [(ngModel)]="comment.descriptionComment" placeholder="Write your comment here" name="descriptionComment" />
+              </div>
+              <button class="btn btn-primary" type="submit">Post Comment</button>
+            </form>
+          </div>
         </div>
-      </div>
-    </li>
-  </ul>
-  <form class="comment-form" (ngSubmit)="addComment()">
-    <div class="form-group">
-      <input class="form-control" id="descriptionComment" [(ngModel)]="comment.descriptionComment" placeholder="Write your comment here" name="descriptionComment" />
-    </div>
-    <button class="btn btn-primary" type="submit">Post Comment</button>
-  </form>
-</div>
-
+        <div *ngIf="post.isSorted">
+          <div class="comments-section">
+            <h3>Comments<button type="button" class="btn btn-outline-secondary" style="margin-left: 20px;" (click)="post.isSorted = false">Filtered</button></h3>
+            <ul class="list-unstyled">
+              <li class="media my-4" *ngFor="let commenta of comments">
+                  <h5 class="mt-0 mb-1">{{ commenta?.userComment?.lastName }}</h5>
+                  <p>{{ commenta?.descriptionComment}}</p>
+                  <p class="text-muted">Posted on {{ commenta?.dateCreationComment }}</p>
+                  <div class="like-dislike-section">
+                    <button class="btn btn-outline-primary mr-2" (click)="onLikeClick(commenta)">
+                      Like <span style="color: dimgray;">{{ commenta?.nbLiked }}</span>
+                    </button>
+                    <button class="btn btn-outline-danger" (click)="onDislikeClick(commenta)">
+                      Dislike <span style="color: dimgray;">{{ commenta?.nbDisliked }}</span>
+                    </button>
+                  </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

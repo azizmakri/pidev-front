@@ -15,19 +15,24 @@ export class PostDetailsComponent {
   postId!: number;
   post!: Post;
   comment!:CommentPost;
+  commentup!:CommentPost;
   descriptionComment!:string;
   userId = "a900a796-5fdf-4416-8f25-ac3ea01f9514";
   like: Like = new Like();
   dislike: Dislike = new Dislike();
+  comments!:CommentPost[];
+
 
   
 
-  constructor(private route: ActivatedRoute, private forumService: ForumService,private router: Router) { }
+  constructor(private route: ActivatedRoute, private forumService: ForumService) { }
 
   ngOnInit(): void {
     this.postId = this.route.snapshot.params['id'];
     this.getPostById(this.postId);
     this.comment = new CommentPost();
+    this.getSorted();
+    
   }
 
 
@@ -46,6 +51,7 @@ export class PostDetailsComponent {
       );
   }
 
+  
   addComment(): void {
     const idUser = "a900a796-5fdf-4416-8f25-ac3ea01f9514";
     console.log('111111');
@@ -54,7 +60,6 @@ export class PostDetailsComponent {
         () => {
           console.log('comment added successfully');
           console.log(this.comment.descriptionComment);
-          this.comment = new CommentPost();
           this.descriptionComment = '';
           location.reload(); 
 
@@ -62,6 +67,23 @@ export class PostDetailsComponent {
         error => console.log(error)
       );
   }
+
+  
+  updateComment(idComment:number): void {
+    const idUser="a900a796-5fdf-4416-8f25-ac3ea01f9514";
+    this.forumService.updateComment(this.comment,idUser,idComment)
+      .subscribe(
+        () => console.log('post updated successfully'),
+        error => console.log(error)
+      );
+
+  }
+
+  getSorted(){
+  this.forumService.getCommentsSortedByAverage(this.postId).subscribe(res => {
+      console.log(res)
+      this.comments=res})
+    }
 
   deleteComment(comment: any): void {
     if (confirm('Are you sure you want to delete this post?')) {

@@ -10,6 +10,7 @@ import { ForumService } from 'src/app/Service/forum/forum.service';
 })
 export class ListForumFrontComponent {
   posts!:any[];
+  userId = "a900a796-5fdf-4416-8f25-ac3ea01f9514";
   constructor(private service:ForumService,private router: Router){}
 
   ngOnInit(): void {

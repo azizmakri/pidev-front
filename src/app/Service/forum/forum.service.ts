@@ -12,7 +12,9 @@ import { CommentPost } from 'src/app/Model/CommentPost';
 export class ForumService {
 
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { 
+    
+  }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -42,6 +44,11 @@ export class ForumService {
     return this.http.post<CommentPost>(url, c);
   }
 
+  updateComment(c: CommentPost, idUser: string, idComment: number): Observable<CommentPost> {
+    const url = `http://localhost:9001/forum/comment/edit/${idUser}/${idComment}`;
+    return this.http.put<CommentPost>(url, c);
+  }
+
   deleteComment(idComment: number, idUser: string): Observable<void> {
     return this.http.delete<void>(`http://localhost:9001/forum/comment/delete/${idComment}/${idUser}`);
   }
@@ -52,6 +59,11 @@ export class ForumService {
 
   addAndAssignDislike( dislike: Dislike ,id_User:string,idComment: number){
     return this.http.post(`http://localhost:9001/forum/dislike/dislikeComment/${id_User}/${idComment}`,dislike)
+  }
+  
+  getCommentsSortedByAverage(idPost: number): Observable<CommentPost[]> {
+    const url = `http://localhost:9001/forum/comment/getSorted/${idPost}`;
+    return this.http.get<CommentPost[]>(url);
   }
   
 }

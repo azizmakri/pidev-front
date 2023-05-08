@@ -9,4 +9,5 @@ export class CommentPost {
     nbDisliked!: number;
     post!: Post;
     userComment!: User;
+    isEditing!: boolean;
   }
